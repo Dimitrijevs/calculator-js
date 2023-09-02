@@ -24,6 +24,7 @@ h1{
     width: 96%;
     margin: 0 auto 10px;
     border: 2px solid black;
+    height: 34px;;
 }
 
 .second-row, .third-row, .fourth-row, .conflict{

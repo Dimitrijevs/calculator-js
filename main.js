@@ -1,37 +1,76 @@
-function add(num1, num2) {
-    return Number(num1) + Number(num2);
-}
+let displayValue = "";
 
-function subtract(num1, num2){
-    return Number(num1) - Number(num2);
-}
-
-function multiply(num1, num2){
-    return Number(num1) * Number(num2);
-}
-
-function divide(num1, num2){
-    return Number(num1) / Number(num2);
+function updateDisplay(number) {
+  displayValue += number;
+  document.getElementById("display").textContent = displayValue;
 }
 
 
-function userInput() {
-    let numString = prompt("Enter a mathematical statement: ");
-    numString = numString.split(" ");
-    let operator = numString[1];
-    let num1 = numString[0];
-    let num2 = numString[2];
-    
-    if (operator === "+"){
-        console.log(add(num1, num2));
-    } else if (operator === "-"){
-        console.log(subtract(num1, num2));
-    } else if (operator === "*"){
-        console.log(multiply(num1, num2));
-    } else if (operator === "/"){
-        console.log(divide(num1, num2));
+const numberButtons = document.querySelectorAll(".number-button");
+numberButtons.forEach(button => {
+  button.addEventListener("click", function() {
+    const number = button.value;
+    updateDisplay(number);
+  });
+});
+
+
+const operatorButton = document.querySelectorAll(".operator-button");
+operatorButton.forEach(button => {
+    button.addEventListener("click", function() {
+        const operator = " " + button.value + " ";
+        updateDisplay(operator);
+    })
+})
+
+
+const clearButton = document.getElementById("clear-button");
+clearButton.addEventListener("click", function() {
+    displayValue = "";
+    document.getElementById("display").textContent = displayValue;
+})
+
+
+const equalsButton = document.getElementById("equals-button");
+equalsButton.addEventListener("click", function() {
+    const values = displayValue.split(" ");
+
+    while(values.some(val => ["*", "/"].includes(val))){
+        const index = values.findIndex(val => ["*", "/"].includes(val));
+        const num1 = parseFloat(values[index - 1]);
+        const num2 = parseFloat(values[index + 1]);
+        const operator = values[index];
+        let result;
+
+        switch(operator){
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+        }
+        values.splice(index - 1, 3, result);
     }
-}
 
+    while(values.some(val => ["+", "-"].includes(val))){
+        const index = values.findIndex(val => ["+", "-"].includes(val))
+        const num1 = parseFloat(values[index - 1]);
+        const num2 = parseFloat(values[index + 1]);
+        const operator = values[index];
+        let result;
 
-userInput();
+        switch(operator){
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+        }
+
+        values.splice(index - 1, 3, result);
+    }
+    displayValue = values.join(' ');
+    document.getElementById("display").textContent = displayValue;
+});
