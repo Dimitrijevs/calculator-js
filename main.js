@@ -50,7 +50,7 @@ equalsButton.addEventListener("click", function() {
                 result = num1 / num2;
                 break;
         }
-        values.splice(index - 1, 3, result);
+        values.splice(index - 1, 3, result.toFixed(2));
     }
 
     while(values.some(val => ["+", "-"].includes(val))){
@@ -69,7 +69,7 @@ equalsButton.addEventListener("click", function() {
                 break;
         }
 
-        values.splice(index - 1, 3, result);
+        values.splice(index - 1, 3, result.toFixed(2));
     }
     displayValue = values.join(' ');
     document.getElementById("display").textContent = displayValue;

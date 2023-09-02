@@ -7,6 +7,13 @@ h1{
 *{
     margin: 0;
     padding: 0;
+    transition: 0.3s;
+}
+
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,74,89,1) 100%);
+    height: 100vh;
 }
 
 .container{
@@ -14,6 +21,7 @@ h1{
     width: 25%;
     padding: 15px;
     border: 2px solid black;
+    background-color: rgb(2,0,36);
 }
 
 .result{
@@ -24,7 +32,8 @@ h1{
     width: 96%;
     margin: 0 auto 10px;
     border: 2px solid black;
-    height: 34px;;
+    height: 34px;
+    background-color: #fff;
 }
 
 .second-row, .third-row, .fourth-row, .conflict{
@@ -87,10 +96,22 @@ h1{
     background-color: #81C784;
 }
 
+.green:hover {
+    background-color: #A8DF8E;
+}
+
 .red{
     background-color: #F50258
 }
 
+.red:hover {
+    background-color: #EA1179;
+}
+
 .top-margin{
     margin-top: 4px;
+}
+
+.number-button:hover, .operator-button:hover {
+    background-color: rgba(2,74,89,1)
 }
